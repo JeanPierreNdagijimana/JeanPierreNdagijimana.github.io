@@ -14,11 +14,18 @@ jQuery(document).ready(function($) {
       data: form.serialize(),
       dataType: "json",
       success: function(response) {
+        // Show success message
         $("#sendmessage").addClass("show");
         $("#errormessage").removeClass("show");
-        form.find("input, textarea").val(""); // Clear the form
+
+        // Clear the form fields
+        form[0].reset(); // This resets the form
+
+        // Optionally, clear validation messages
+        form.find('.validation').html('').hide();
       },
       error: function(response) {
+        // Show error message
         $("#sendmessage").removeClass("show");
         $("#errormessage").addClass("show");
         $('#errormessage').html("Oops! There was an error. Please try again.");
